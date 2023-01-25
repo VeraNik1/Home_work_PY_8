@@ -107,7 +107,7 @@ print(calcThirdLevel('12 - 4*2 +6/3'))
 '''Четвертый уровень'''
 def calc(text):
     pattern = r'.*?(\([^()]{3,}\)).*?'
-    while '(' in text:
+    while re.findall(pattern, text):
         temp = re.findall(pattern, text)
         for item in temp:
             res_temp = calcThirdLevel(item[1:-1])
@@ -116,7 +116,12 @@ def calc(text):
 
 print(calc('(-2 +(3 - 5)*6 + (-6 - 3)) / (2 - 1) * (-5^-1)'))
 print(calc('(12 - 4) * 2'))
+print('( 10 - 5 ) * ( 2 + 3 ) - 1 + ( 4 * ( 20 - 20 / ( 5 - 1 ))) * ( 2 + 7 ) = ' , calc('( 10 - 5 ) * ( 2 + 3 ) - 1 + ( 4 * ( 20 - 20 / ( 5 - 1 ))) * ( 2 + 7 )'))
+print('((2    + 3  ) ^2 -1) / 2^  3 = ' , calc('((2    + 3  ) ^2 -1) / 2^  3'))
+print('((2+3)^2-1)/2^ (-3) = ' , calc('((2+3)^2-1)/2^ (-3)'))
 
+
+ 
 while True:
     try:
         print(calc(input("Введите числовое выражение, которое хотите вычислить >>> ")))
