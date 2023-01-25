@@ -64,7 +64,7 @@ def calcFirstlevel(a, b, c):
     if c == '/': return a / b
     if c == '^': return a ** b
 
-print(calcFirstlevel(3, 2, '*'))
+print('test of the first level: ', calcFirstlevel(3, 2, '*'))
 
 '''Второй уровень'''
 def calcSecondLevel(text):
@@ -78,7 +78,7 @@ def calcSecondLevel(text):
             break
     return temp_list[0]
 
-print(calcSecondLevel('13 - 5 +10 +100'))
+print('test of the second level: ', calcSecondLevel('13 - 5 +10 +100'))
 
 '''Третий уровень'''
 def calcThirdLevel(text):
@@ -102,7 +102,7 @@ def calcThirdLevel(text):
         return calcSecondLevel(text_temp)
     else: return temp_list[0]
 
-print(calcThirdLevel('12 - 4*2 +6/3'))
+print('test of the third level: ', calcThirdLevel('12 - 4*2 +6/3'))
 
 '''Четвертый уровень'''
 def calc(text):
@@ -114,20 +114,26 @@ def calc(text):
             text = text.replace(item, str(res_temp))
     return calcThirdLevel(text)
 
-print(calc('(-2 +(3 - 5)*6 + (-6 - 3)) / (2 - 1) * (-5^-1)'))
-print(calc('(12 - 4) * 2'))
+
+print('test of the fourth level: ', calc('(12 - 4) * 2'))
+print('Еще немного тестов: ')
+print('(-2 +(3 - 5)*6 + (-6 - 3)) / (2 - 1) * (-5^-1) = ', calc('(-2 +(3 - 5)*6 + (-6 - 3)) / (2 - 1) * (-5^-1)'))
 print('( 10 - 5 ) * ( 2 + 3 ) - 1 + ( 4 * ( 20 - 20 / ( 5 - 1 ))) * ( 2 + 7 ) = ' , calc('( 10 - 5 ) * ( 2 + 3 ) - 1 + ( 4 * ( 20 - 20 / ( 5 - 1 ))) * ( 2 + 7 )'))
 print('((2    + 3  ) ^2 -1) / 2^  3 = ' , calc('((2    + 3  ) ^2 -1) / 2^  3'))
 print('((2+3)^2-1)/2^ (-3) = ' , calc('((2+3)^2-1)/2^ (-3)'))
 
 
- 
+
 while True:
     try:
-        print(calc(input("Введите числовое выражение, которое хотите вычислить >>> ")))
-        break
+        n = input("Введите числовое выражение, которое хотите вычислить либо enter, чтобы выйти из калькулятора >>> ")
+        if n:
+            print(n, calc(n), sep = ' = ')
+        else:
+            print('Хорошего дня! До новой встречи!') 
+            break
     except ZeroDivisionError:
         print('В результате вычислений в знаменателе получился 0. Ошибка деления на 0')
-        break
     except:
         print("Введено некорректное математическое выражение, проверьте и повторите запрос")
+print()
